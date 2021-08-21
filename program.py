@@ -253,26 +253,28 @@ def program11():
 
 # Check Environment Variables
 def program12():
+    global poolKey
+    global farmerKey
+
+
     if "POOL_KEY" in os.environ:
-        poolKey = os.environ('POOL_KEY')
+        poolKey = os.environ['POOL_KEY']
+    else:
+        poolKey = input("POOL_KEY was not found. Paste you key here: ")
+        command = 'sudo sh -c \'echo POOL_KEY=\\"'+poolKey+'\\" >> /etc/environment\''
+        os.system(command)
+        print("POOL_KEY successfully added! The key will be loaded when you restart your ssh session")
 
     if "FARMER_KEY" in os.environ:
-        farmerKey = os.environ('FARMER_KEY')
-        
+        farmerKey = os.environ['FARMER_KEY']
+    else:
+        farmerKey = input("FARMER_KEY was not found. Paste you key here: ")
+        command = 'sudo sh -c \'echo FARMER_KEY=\\"'+farmerKey+'\\" >> /etc/environment\''
+        os.system(command)
+        print("FARMER_KEY successfully added! The key will be loaded when you restart your ssh session")
+
     print("POOL_KEY: "+poolKey)
     print("FARMER_KEY: "+farmerKey)
-
-    if poolKey == "":
-        poolKey = input("POOL_KEY was not found. Paste you key here: ")
-        #e.g TMP="abc"
-        os.system('sudo echo "'+'"POOL_KEY="'+poolKey+'"'+'" >> /etc/environment')
-        print("POOL_KEY successfully added!")
-
-    if farmerKey == "":
-        farmerKey = input("FARMER_KEY was not found. Paste you key here: ")
-        #e.g TMP="abc"
-        os.system('sudo echo "'+'"FARMER_KEY="'+farmerKey+'"'+'" >> /etc/environment')
-        print("FARMER_KEY successfully added!")
 
 welcome = ("""\
  --------------------------------------------
