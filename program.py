@@ -7,8 +7,8 @@ os.system("clear")
 
 global poolKey
 global farmerKey
-poolKey = "enter your key"
-farmerKey = "enter your key"
+poolKey = os.environ['POOL_KEY']
+farmerKey = os.environ['FARMER_KEY']
 
 #Mount Drive 
 def program1():
@@ -247,6 +247,25 @@ def program11():
     if watch == "n":
         os.system("progress -w")
 
+# Check Environment Variables
+def program12():
+    poolKey = os.environ('POOL_KEY')
+    farmerKey = os.environ('FARMER_KEY')
+    print("POOL_KEY: "+poolKey)
+    print("FARMER_KEY: "+farmerKey)
+
+    if poolKey == "":
+        poolKey = input("POOL_KEY was not found. Paste you key here: ")
+        #e.g TMP="abc"
+        os.system('sudo echo "'+'"POOL_KEY="'+poolKey+'"'+'" >> /etc/environment')
+        print("POOL_KEY successfully added!")
+
+    if farmerKey == "":
+        farmerKey = input("FARMER_KEY was not found. Paste you key here: ")
+        #e.g TMP="abc"
+        os.system('sudo echo "'+'"FARMER_KEY="'+farmerKey+'"'+'" >> /etc/environment')
+        print("FARMER_KEY successfully added!")
+
 welcome = ("""\
  --------------------------------------------
 |                                            |
@@ -265,10 +284,8 @@ welcome = ("""\
 |   [ 9 ]   - Start MadMax Plotter           |
 |   [ 10 ]  - Start Plot Mover               |
 |   [ 11 ]  - View Move Processes            |
+|   [ 12 ]  - Check Environment Variables    |
 |   [ q ]   - Quit Program                   |
-|                                            |
-|                                            |
-|                                            |
 |                                            |
  --------------------------------------------
 """)
@@ -335,6 +352,11 @@ while True:
         os.system("clear")
         print("==> View Move Processes")
         program11()
+        input("\nPress ENTER to go back to main program")
+    elif selection == "12":
+        os.system("clear")
+        print("==> Check Environment Variables")
+        program12()
         input("\nPress ENTER to go back to main program")
     else:
         print("Wrong User Input")
