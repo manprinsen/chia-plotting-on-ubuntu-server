@@ -8,7 +8,7 @@ This repository will help a novice Linux user quickly getting started with chia 
 
 ## 👌 Step by step guide
 
-* ⬇️ You need a fresh Ubuntu Server 21.04 installation with SSH access. The following links will guide you through the download process, how to create a bootable USB stick and so on:
+* ⬇️ You need a fresh Ubuntu Server 21.04 installation with the SSH feature enabled. The following links will guide you through the download process, installation and on how to create a bootable USB stick:
   https://ubuntu.com/tutorials/install-ubuntu-server#1-overview
   https://releases.ubuntu.com/21.04/ubuntu-21.04-desktop-amd64.iso
 
