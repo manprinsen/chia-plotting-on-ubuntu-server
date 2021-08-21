@@ -18,7 +18,7 @@ This repository will help a novice Linux user quickly getting started with chia 
   ssh your_user_name@your_servers_local_ip_address
   ```
 
-- 🏛️ To configure a static local IP address, please follow this link: https://linuxize.com/post/how-to-configure-static-ip-address-on-ubuntu-20-04/
+- 🏛️ To configure a local static ip address, please follow this link: https://linuxize.com/post/how-to-configure-static-ip-address-on-ubuntu-20-04/
 
 - 😀 Now we are one step closer to start plotting on our server
 
