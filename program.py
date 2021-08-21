@@ -7,8 +7,12 @@ os.system("clear")
 
 global poolKey
 global farmerKey
-poolKey = os.environ['POOL_KEY']
-farmerKey = os.environ['FARMER_KEY']
+
+if "POOL_KEY" in os.environ:
+    poolKey = os.environ['POOL_KEY']
+
+if "FARMER_KEY" in os.environ:
+    farmerKey = os.environ['FARMER_KEY']
 
 #Mount Drive 
 def program1():
@@ -249,8 +253,12 @@ def program11():
 
 # Check Environment Variables
 def program12():
-    poolKey = os.environ('POOL_KEY')
-    farmerKey = os.environ('FARMER_KEY')
+    if "POOL_KEY" in os.environ:
+        poolKey = os.environ('POOL_KEY')
+
+    if "FARMER_KEY" in os.environ:
+        farmerKey = os.environ('FARMER_KEY')
+        
     print("POOL_KEY: "+poolKey)
     print("FARMER_KEY: "+farmerKey)
 
