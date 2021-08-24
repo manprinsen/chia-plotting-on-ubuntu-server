@@ -178,13 +178,13 @@ def program9():
         destinationDirectory = "/media/temp/"
 
     log = input("Do you want to log the plotter output?: [Y/n] ")
-    fileName = ""
-    if log == "" or log == "y":
-        tmp = input("Enter a file name: [Default=plotter]")
-        if tmp == "":
-            tmp = "plotter"
+    #fileName = ""
+    #if log == "" or log == "y":
+    #    tmp = input("Enter a file name: [Default=plotter]")
+    #    if tmp == "":
+    #        tmp = "plotter"
 
-        fileName = " > "+tmp+".log"
+    #    fileName = " > "+tmp+".log"
 
     runInAnotherShell = input("Do you want to start the plotter in a detached shell? [Y/n] ")
 
@@ -197,10 +197,12 @@ def program9():
     if startPlot == "y":
         os.system("clear")
         if runInAnotherShell == "y":
-            os.system("screen -dmS plotter bash -c '"+command+fileName+"; exec bash'")
+            #os.system("screen -dmS plotter bash -c '"+command+fileName+"; exec bash'")
+            os.system("screen -dmSL plotter bash -c '"+command+"; exec bash'")
             print("The plotter is successfully running in the background!")
         else:
-            os.system(command+fileName)
+            os.system(command)
+            #os.system(command+fileName)
 
 #Start Plot Mover
 def program10():
