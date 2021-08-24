@@ -21,7 +21,7 @@ def program1():
     drivePath = input("Please enter the drive path [eg /dev/sdb1]: ")
     while not(os.path.exists(drivePath)):
         if drivePath == "":
-            res = input("Do you want to go back to main program? [y/n] ")
+            res = input("Do you want to go back to main program? [y/N] ")
             if res == "y":
                 return
         print(drivePath + " does not exist")
@@ -30,12 +30,12 @@ def program1():
     mountPath = input("Where do you want to mount " + drivePath + "? [eg /media/temp] ")
     while not(os.path.exists(mountPath)):
         if mountPath == "":
-            res = input("Do you want to go back to main program? [y/n] ")
+            res = input("Do you want to go back to main program? [y/N] ")
             if res == "y":
                 return
         else:
-            res = input("Do you want to create "+mountPath+" ? [y/n] ")
-            if res == "y":
+            res = input("Do you want to create "+mountPath+" ? [Y/n] ")
+            if res == "" or res == "y":
                 os.system("sudo mkdir "+mountPath)
                 print(mountPath+" is created!")
         mountPath = input("Where do you want to mount " + drivePath + "? [eg /media/temp] ")
@@ -52,8 +52,8 @@ def program2():
             if res == "y":
                 return
         else:
-            res = input("Do you want to create "+mountPath+" ? [y/n] ")
-            if res == "y":
+            res = input("Do you want to create "+mountPath+" ? [Y/n] ")
+            if res == "" or res == "y":
                 os.system("sudo mkdir "+mountPath)
                 print(mountPath+" is created!")
         mountPath = input("Where do you want to mount the ram drive? [eg /media/temp] ")
@@ -69,14 +69,14 @@ def program3():
     drivePath = input("Please enter the drive path [eg /media/temp]: ")
     while not(os.path.exists(drivePath)):
         if drivePath == "":
-            res = input("Do you want to go back to main program? [y/n] ")
+            res = input("Do you want to go back to main program? [y/N] ")
             if res == "y":
                 return
         print(drivePath + " does not exist")
         drivePath = input("Please enter the drive path [eg /media/temp]: ")
     
-    unmount = input("Are you sure you want to unmount " + drivePath + "? [y/n] ")
-    if unmount == "y":
+    unmount = input("Are you sure you want to unmount " + drivePath + "? [Y/n] ")
+    if unmount == "" or unmount == "y":
         os.system("sudo umount " + drivePath)
         print(drivePath + " is unmounted!")
 
@@ -87,14 +87,14 @@ def program4():
     drivePath = input("Please enter the drive path [eg /media/temp]: ")
     while not(os.path.exists(drivePath)):
         if drivePath == "":
-            res = input("Do you want to go back to main program? [y/n] ")
+            res = input("Do you want to go back to main program? [y/N] ")
             if res == "y":
                 return
         print(drivePath + " does not exist")
         drivePath = input("Please enter the drive path [eg /media/temp]: ")
     
-    erase = input("Do you want to delete all files inside " + drivePath + "? [y/n] ")
-    if erase == "y":
+    erase = input("Do you want to delete all files inside " + drivePath + "? [Y/n] ")
+    if erase == "" or erase == "y":
         os.system("sudo rm " + drivePath + "/*")
         print("All files deleted in " + drivePath + " !")
 
@@ -114,7 +114,7 @@ def program7():
     print("")
     sessionName = input("Enter a session name: ")
     if sessionName == "":
-        res = input("Do you want to go back to main program? [y/n] ")
+        res = input("Do you want to go back to main program? [y/N] ")
         if res == "y":
             return
     else:
@@ -129,7 +129,7 @@ def program7():
 
 #List Disk Infomation 
 def program8():
-    watch = input("Do you want to watch in real time? [y/n] ")
+    watch = input("Do you want to watch in real time? [y/N] ")
     try:
         while watch == "y":
             os.system("clear")
@@ -151,9 +151,9 @@ def program9():
     if madmaxPath == "":
         madmaxPath = "/home/lemling/chia/chia-plotter/build/chia_plot"
     
-    nrOfCores = str(input("Enter number of cores: [Default=56] "))
+    nrOfCores = str(input("Enter number of cores: [Default=28] "))
     if nrOfCores == "":
-        nrOfCores = "56"
+        nrOfCores = "28"
 
     nrOfBuckets = str(input("Enter number of buckets: [Default=512] "))
     if nrOfBuckets == "":
@@ -163,8 +163,8 @@ def program9():
     if tempDirectory == "":
         tempDirectory = "/media/temp/"
 
-    ramdrive = input("Do you want to use a ram drive? [y/n] ")
-    if ramdrive == "y":
+    ramdrive = input("Do you want to use a ram drive? [Y/n] ")
+    if ramdrive == "" or ramdrive == "y":
         ramDirectory = input("Enter path to ram directory: [Default=/media/ramdisk/] ")
         if ramDirectory == "":
             ramDirectory = " -2 /media/ramdisk/"
@@ -177,20 +177,23 @@ def program9():
     if destinationDirectory == "":
         destinationDirectory = "/media/temp/"
 
-    log = input("Do you want to log the plotter output?: [y/n] ")
+    log = input("Do you want to log the plotter output?: [Y/n] ")
     fileName = ""
-    if log == "y":
-        tmp = input("Enter a file name: ")
+    if log == "" or log == "y":
+        tmp = input("Enter a file name: [Default=plotter]")
+        if tmp == "":
+            tmp = "plotter"
+
         fileName = " > "+tmp+".log"
 
-    runInAnotherShell = input("Do you want to start the plotter in a detached shell? [y/n] ")
+    runInAnotherShell = input("Do you want to start the plotter in a detached shell? [Y/n] ")
 
     command = madmaxPath+" -n -1 -r "+nrOfCores+" -u "+nrOfBuckets+" -t "+tempDirectory+ramDirectory+" -d "+destinationDirectory+" -c "+poolKey+" -f "+farmerKey
     os.system("clear") 
     print("==> Start MadMax Plotter")
     
     print("PREVIEW: "+command)
-    startPlot = input("Are you sure you want to run this command? [y/n] ")
+    startPlot = input("Are you sure you want to run this command? [Y/n] ")
     if startPlot == "y":
         os.system("clear")
         if runInAnotherShell == "y":
@@ -209,18 +212,18 @@ def program10():
     if destination == "":
         destination = "/media/output/"
 
-    log = input("Do you want to log the plot mover output?: [y/n] ")
+    log = input("Do you want to log the plot mover output?: [Y/n] ")
     fileName = ""
     if log == "y":
         tmp = input("Enter a file name: ")
         fileName = " > "+tmp+".log"
 
-    runInAnotherShell = input("Do you want to start the plot mover in a detached shell? [y/n] ")
+    runInAnotherShell = input("Do you want to start the plot mover in a detached shell? [Y/n] ")
 
     command = "watch -n 10 mv "+source+"*.plot "+destination
     print("PREVIEW: "+command)
-    startPlot = input("Are you sure you want to run this command? [y/n] ")
-    if startPlot == "y":
+    startPlot = input("Are you sure you want to run this command? [Y/n] ")
+    if startPlot == "" or startPlot == "y":
         os.system("clear")
         if runInAnotherShell == "y":
             os.system("screen -dmS mover bash -c '"+command+fileName+"; exec bash'")
@@ -230,7 +233,7 @@ def program10():
 
 #View Move Processes
 def program11():
-    watch = input("Do you want to watch in real time? [y/n] ")
+    watch = input("Do you want to watch in real time? [y/N] ")
     try:
         #while watch == "y":
         if watch == "y":
