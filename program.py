@@ -145,7 +145,7 @@ def program8():
         print("Exiting")
         pass
     
-    if watch == "n":
+    if watch == "" or watch == "n":
         os.system("df -h")
 
 #Start MadMax Plotter
