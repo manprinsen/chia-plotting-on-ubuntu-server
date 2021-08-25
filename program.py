@@ -45,7 +45,10 @@ def program1():
 
 #Mount Ram Drive
 def program2():
-    mountPath = input("Where do you want to mount the ram drive? [eg /media/temp] ")
+    mountPath = input("Where do you want to mount the ram drive? [Default=/media/temp] ")
+    if mountPath == "":
+        mountPath = "/media/temp"
+
     while not(os.path.exists(mountPath)):
         if mountPath == "":
             res = input("Do you want to go back to main program? [y/n] ")
@@ -177,7 +180,7 @@ def program9():
     if destinationDirectory == "":
         destinationDirectory = "/media/temp/"
 
-    log = input("Do you want to log the plotter output?: [Y/n] ")
+    #log = input("Do you want to log the plotter output?: [Y/n] ")
     #fileName = ""
     #if log == "" or log == "y":
     #    tmp = input("Enter a file name: [Default=plotter]")
@@ -194,9 +197,9 @@ def program9():
     
     print("PREVIEW: "+command)
     startPlot = input("Are you sure you want to run this command? [Y/n] ")
-    if startPlot == "y":
+    if startPlot == "" or startPlot == "y":
         os.system("clear")
-        if runInAnotherShell == "y":
+        if runInAnotherShell == "" or runInAnotherShell == "y":
             #os.system("screen -dmS plotter bash -c '"+command+fileName+"; exec bash'")
             os.system("screen -dmSL plotter bash -c '"+command+"; exec bash'")
             print("The plotter is successfully running in the background!")
@@ -216,7 +219,7 @@ def program10():
 
     log = input("Do you want to log the plot mover output?: [Y/n] ")
     fileName = ""
-    if log == "y":
+    if log == "" or log == "y":
         tmp = input("Enter a file name: ")
         fileName = " > "+tmp+".log"
 
@@ -227,7 +230,7 @@ def program10():
     startPlot = input("Are you sure you want to run this command? [Y/n] ")
     if startPlot == "" or startPlot == "y":
         os.system("clear")
-        if runInAnotherShell == "y":
+        if runInAnotherShell == "" or runInAnotherShell == "y":
             os.system("screen -dmS mover bash -c '"+command+fileName+"; exec bash'")
             print("The plot mover is successfully running in the background!")
         else:
@@ -238,7 +241,7 @@ def program11():
     watch = input("Do you want to watch in real time? [y/N] ")
     try:
         #while watch == "y":
-        if watch == "y":
+        if watch == "" or watch == "y":
             os.system("clear")
             print("==> View Move Processes")
             print("\nPress Ctrl+C to terminate watch in real time")
@@ -260,7 +263,6 @@ def program11():
 def program12():
     global poolKey
     global farmerKey
-
 
     if "POOL_KEY" in os.environ:
         poolKey = os.environ['POOL_KEY']
