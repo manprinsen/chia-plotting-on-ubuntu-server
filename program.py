@@ -45,9 +45,9 @@ def program1():
 
 #Mount Ram Drive
 def program2():
-    mountPath = input("Where do you want to mount the ram drive? [Default=/media/temp] ")
+    mountPath = input("Where do you want to mount the ram drive? [Default=/media/ramdisk] ")
     if mountPath == "":
-        mountPath = "/media/temp"
+        mountPath = "/media/ramdisk"
 
     while not(os.path.exists(mountPath)):
         if mountPath == "":
