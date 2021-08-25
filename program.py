@@ -176,9 +176,9 @@ def program9():
     else:
         ramDirectory = ""
 
-    destinationDirectory = str(input("Enter path to output directory: [Default=/media/temp/] "))
+    destinationDirectory = str(input("Enter path to output directory: [Default=/media/output/] "))
     if destinationDirectory == "":
-        destinationDirectory = "/media/temp/"
+        destinationDirectory = "/media/output/"
 
     #log = input("Do you want to log the plotter output?: [Y/n] ")
     #fileName = ""
@@ -256,7 +256,7 @@ def program11():
         print("Exiting")
         pass
     
-    if watch == "n":
+    if watch == "" or watch == "n":
         os.system("progress -w")
 
 # Check Environment Variables
