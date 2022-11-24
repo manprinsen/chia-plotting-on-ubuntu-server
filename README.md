@@ -1,6 +1,6 @@
 ## 🌱 About
 
-I would like to share my (little) knowledge about getting started with chia plotting on ubuntu server (21.04).
+I would like to share my knowledge about getting started with chia NFT plotting on ubuntu server (21.04).
 
 ## ⚠️ Disclaimer
 
